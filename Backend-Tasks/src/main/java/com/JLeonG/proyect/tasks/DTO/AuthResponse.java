@@ -1,4 +1,6 @@
 package com.JLeonG.proyect.tasks.DTO;
 
-public record AuthResponse() {
+public record AuthResponse(
+        String token
+) {
 }

@@ -34,7 +34,7 @@ public class User  implements UserDetails{
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private String role;
+    private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Task> tasks;
