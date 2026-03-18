@@ -3,8 +3,8 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 import { ProtectedRoute } from './router/ProtectedRoute'
+import { MainLayout } from './components/layout/MainLayout'
 import { DashboardPage } from './pages/DashboardPage'
-
 
 function App() {
   return (
@@ -16,7 +16,9 @@ function App() {
       {/* Rutas protegidas */}
       <Route path="/dashboard" element={
         <ProtectedRoute>
+          <MainLayout>
           <DashboardPage />
+          </MainLayout>
         </ProtectedRoute>
       } />
 
@@ -25,5 +27,5 @@ function App() {
     </Routes>
   )
 }
-
+  
 export default App
