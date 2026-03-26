@@ -5,6 +5,7 @@ import { RegisterPage } from './pages/RegisterPage'
 import { ProtectedRoute } from './router/ProtectedRoute'
 import { MainLayout } from './components/layout/MainLayout'
 import { DashboardPage } from './pages/DashboardPage'
+import { StatsPage } from './pages/StatsPage'
 
 function App() {
   return (
@@ -13,19 +14,20 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
-      {/* Rutas protegidas */}
-      <Route path="/dashboard" element={
+      {/* Rutas protegidas — MainLayout como padre, páginas como hijas */}
+      <Route element={
         <ProtectedRoute>
-          <MainLayout>
-          <DashboardPage />
-          </MainLayout>
+          <MainLayout />
         </ProtectedRoute>
-      } />
+      }>
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/stats" element={<StatsPage />} />
+      </Route>
 
       {/* Ruta por defecto */}
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   )
 }
-  
+
 export default App

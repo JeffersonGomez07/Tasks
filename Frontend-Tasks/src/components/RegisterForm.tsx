@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { Spinner } from './shared/Spinner'
 import type { RegisterCredentials } from '../types/auth.types'
 
 const registerSchema = z.object({
@@ -23,55 +24,70 @@ export const RegisterForm = ({ onSubmit, isLoading }: Props) => {
   })
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-
-      <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium text-gray-700">Correo</label>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      {/* Email */}
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+          Correo Electrónico
+        </label>
         <input
           {...register('email')}
           type="email"
-          placeholder="tu@correo.com"
-          className="border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="correo@ejemplo.com"
+          className="input-base"
         />
         {errors.email && (
-          <span className="text-red-500 text-xs">{errors.email.message}</span>
+          <p className="error-message">{errors.email.message}</p>
         )}
       </div>
 
-      <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium text-gray-700">Contraseña</label>
+      {/* Contraseña */}
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+          Contraseña
+        </label>
         <input
           {...register('password')}
           type="password"
           placeholder="••••••••"
-          className="border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-base"
         />
         {errors.password && (
-          <span className="text-red-500 text-xs">{errors.password.message}</span>
+          <p className="error-message">{errors.password.message}</p>
         )}
       </div>
 
-      <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium text-gray-700">Confirmar contraseña</label>
+      {/* Confirmar contraseña */}
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+          Confirmar Contraseña
+        </label>
         <input
           {...register('confirmPassword')}
           type="password"
           placeholder="••••••••"
-          className="border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-base"
         />
         {errors.confirmPassword && (
-          <span className="text-red-500 text-xs">{errors.confirmPassword.message}</span>
+          <p className="error-message">{errors.confirmPassword.message}</p>
         )}
       </div>
 
+      {/* Botón submit */}
       <button
         type="submit"
         disabled={isLoading}
-        className="bg-blue-600 text-white py-2 rounded-md text-sm font-medium hover:bg-blue-700 disabled:opacity-50"
+        className="btn-primary w-full"
       >
-        {isLoading ? 'Creando cuenta...' : 'Crear cuenta'}
+        {isLoading ? (
+          <>
+            <Spinner size="sm" color="white" />
+            Creando cuenta...
+          </>
+        ) : (
+          'Crear cuenta'
+        )}
       </button>
-
     </form>
   )
 }

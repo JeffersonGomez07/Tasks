@@ -33,27 +33,61 @@ export const RegisterPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm">
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#f6eddc' }}>
+      {/* Elementos decorativos */}
+      <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl -z-10" style={{ backgroundColor: 'rgba(189, 214, 210, 0.2)' }}></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl -z-10" style={{ backgroundColor: 'rgba(165, 200, 202, 0.2)' }}></div>
 
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">Crear cuenta</h1>
-        <p className="text-sm text-gray-500 mb-6">Completa los datos para registrarte</p>
-
-        {error && (
-          <div className="bg-red-50 text-red-600 text-sm px-4 py-2 rounded-md mb-4">
-            {error}
+      <div className="w-full max-w-md">
+        {/* Logo/Brand */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-4" style={{ background: 'linear-gradient(to right, #a5c8ca, #bdd6d2)' }}>
           </div>
-        )}
+          <h1 className="text-3xl font-bold mb-2">
+            TaskApp
+          </h1>
+          <p>
+            Únete para gestionar tus tareas
+          </p>
+        </div>
 
-        <RegisterForm onSubmit={handleRegister} isLoading={isLoading} />
+        {/* Card */}
+        <div className="card">
+          <div className="mb-6">
+            <h2 className="text-xl font-bold mb-1">
+              Crear una cuenta
+            </h2>
+            <p className="text-sm">
+              Completa los datos para registrarte
+            </p>
+          </div>
 
-        <p className="text-sm text-center text-gray-500 mt-4">
-          ¿Ya tienes cuenta?{' '}
-          <Link to="/login" className="text-blue-600 hover:underline">
-            Inicia sesión
-          </Link>
+          {error && (
+            <div className="text-sm px-4 py-3 rounded-lg mb-4 flex items-start gap-3 border-l-4" style={{ backgroundColor: 'rgba(231, 76, 60, 0.1)', borderColor: '#e74c3c', color: '#e74c3c' }}>
+              <span>{error}</span>
+            </div>
+          )}
+
+          <RegisterForm onSubmit={handleRegister} isLoading={isLoading} />
+
+          <div className="mt-6 pt-6" style={{ borderTop: '1px solid #e3e5d7' }}>
+            <p className="text-sm text-center">
+              ¿Ya tienes cuenta?{' '}
+              <Link 
+                to="/login" 
+                className="font-semibold hover:underline transition-colors"
+                style={{ color: '#a5c8ca' }}
+              >
+                Inicia sesión
+              </Link>
+            </p>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <p className="text-xs text-center mt-6" style={{ color: '#bdd6d2' }}>
+          © 2026 TaskApp. Todos los derechos reservados.
         </p>
-
       </div>
     </div>
   )

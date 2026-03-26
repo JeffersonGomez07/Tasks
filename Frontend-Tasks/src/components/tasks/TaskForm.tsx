@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { Spinner } from '../shared/Spinner'
 import type { TaskRequest } from '../../types/task.types'
 
 const taskSchema = z.object({
@@ -32,50 +33,53 @@ export const TaskForm = ({ onSubmit, onCancel, isLoading, defaultValues }: Props
     },
   })
 
-  const inputClass = "border rounded-md px-3 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-  const labelClass = "text-sm font-medium text-gray-700"
-  const errorClass = "text-red-500 text-xs mt-1"
-
   return (
-    <form onSubmit={handleSubmit((data) => onSubmit(data as TaskRequest))} className="flex flex-col gap-4">
-
+    <form onSubmit={handleSubmit((data) => onSubmit(data as TaskRequest))} className="space-y-5">
       {/* Título */}
-      <div className="flex flex-col gap-1">
-        <label className={labelClass}>Título *</label>
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+          Título *
+        </label>
         <input
           {...register('title')}
           type="text"
           placeholder="Nombre de la tarea"
-          className={inputClass}
+          className="input-base"
         />
-        {errors.title && <span className={errorClass}>{errors.title.message as string}</span>}
+        {errors.title && <p className="error-message">{errors.title.message as string}</p>}
       </div>
 
       {/* Descripción */}
-      <div className="flex flex-col gap-1">
-        <label className={labelClass}>Descripción</label>
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+          Descripción
+        </label>
         <textarea
           {...register('description')}
-          placeholder="Descripción opcional"
+          placeholder="Descripción de la tarea (opcional)"
           rows={3}
-          className={`${inputClass} resize-none`}
+          className="textarea-base"
         />
       </div>
 
       {/* Prioridad y Estado */}
-      <div className="grid grid-cols-2 gap-3">
-        <div className="flex flex-col gap-1">
-          <label className={labelClass}>Prioridad</label>
-          <select {...register('priority')} className={inputClass}>
-            <option value="LOW">Baja</option>
-            <option value="MEDIUM">Media</option>
-            <option value="HIGH">Alta</option>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+            Prioridad
+          </label>
+          <select {...register('priority')} className="select-base">
+            <option value="LOW">🟢 Baja</option>
+            <option value="MEDIUM">🟡 Media</option>
+            <option value="HIGH">🔴 Alta</option>
           </select>
         </div>
 
-        <div className="flex flex-col gap-1">
-          <label className={labelClass}>Estado</label>
-          <select {...register('status')} className={inputClass}>
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+            Estado
+          </label>
+          <select {...register('status')} className="select-base">
             <option value="PENDING">Pendiente</option>
             <option value="IN_PROGRESS">En progreso</option>
             <option value="COMPLETED">Completada</option>
@@ -84,34 +88,42 @@ export const TaskForm = ({ onSubmit, onCancel, isLoading, defaultValues }: Props
       </div>
 
       {/* Fecha límite */}
-      <div className="flex flex-col gap-1">
-        <label className={labelClass}>Fecha límite *</label>
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+          Fecha límite *
+        </label>
         <input
           {...register('dueDate')}
           type="date"
-          className={inputClass}
+          className="input-base"
         />
-        {errors.dueDate && <span className={errorClass}>{errors.dueDate.message as string}</span>}
+        {errors.dueDate && <p className="error-message">{errors.dueDate.message as string}</p>}
       </div>
 
       {/* Botones */}
-      <div className="flex justify-end gap-2 pt-2 border-t border-gray-100">
+      <div className="flex justify-end gap-3 pt-2 border-t border-gray-200 dark:border-slate-700">
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800"
+          className="btn-secondary"
         >
           Cancelar
         </button>
         <button
           type="submit"
           disabled={!isValid || isLoading}
-          className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn-primary"
         >
-          {isLoading ? 'Guardando...' : 'Guardar tarea'}
+          {isLoading ? (
+            <>
+              <Spinner size="sm" color="white" />
+              Guardando...
+            </>
+          ) : (
+            'Guardar tarea'
+          )}
         </button>
       </div>
-
     </form>
   )
 }
