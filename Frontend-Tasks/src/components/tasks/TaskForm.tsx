@@ -37,7 +37,7 @@ export const TaskForm = ({ onSubmit, onCancel, isLoading, defaultValues }: Props
     <form onSubmit={handleSubmit((data) => onSubmit(data as TaskRequest))} className="space-y-5">
       {/* Título */}
       <div className="space-y-2">
-        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+        <label className="block text-sm font-semibold text-gray-900">
           Título *
         </label>
         <input
@@ -51,7 +51,7 @@ export const TaskForm = ({ onSubmit, onCancel, isLoading, defaultValues }: Props
 
       {/* Descripción */}
       <div className="space-y-2">
-        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+        <label className="block text-sm font-semibold text-gray-900">
           Descripción
         </label>
         <textarea
@@ -65,18 +65,18 @@ export const TaskForm = ({ onSubmit, onCancel, isLoading, defaultValues }: Props
       {/* Prioridad y Estado */}
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+          <label className="block text-sm font-semibold text-gray-900">
             Prioridad
           </label>
           <select {...register('priority')} className="select-base">
-            <option value="LOW">🟢 Baja</option>
-            <option value="MEDIUM">🟡 Media</option>
-            <option value="HIGH">🔴 Alta</option>
+            <option value="LOW">Baja</option>
+            <option value="MEDIUM">Media</option>
+            <option value="HIGH">Alta</option>
           </select>
         </div>
 
         <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+          <label className="block text-sm font-semibold text-gray-900">
             Estado
           </label>
           <select {...register('status')} className="select-base">
@@ -89,7 +89,7 @@ export const TaskForm = ({ onSubmit, onCancel, isLoading, defaultValues }: Props
 
       {/* Fecha límite */}
       <div className="space-y-2">
-        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+        <label className="block text-sm font-semibold text-gray-900">
           Fecha límite *
         </label>
         <input

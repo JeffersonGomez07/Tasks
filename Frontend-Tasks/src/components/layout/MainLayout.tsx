@@ -7,7 +7,7 @@ export const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: '#f6eddc' }}>
+    <div className="min-h-screen flex bg-gray-50">
 
       {/* Overlay — solo mobile, cierra el sidebar al hacer click fuera */}
       {sidebarOpen && (

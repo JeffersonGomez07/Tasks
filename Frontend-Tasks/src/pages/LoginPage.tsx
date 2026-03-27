@@ -26,50 +26,77 @@ export const LoginPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#f6eddc' }}>
-      {/* Elementos decorativos */}
-      <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl -z-10" style={{ backgroundColor: 'rgba(189, 214, 210, 0.2)' }}></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl -z-10" style={{ backgroundColor: 'rgba(165, 200, 202, 0.2)' }}></div>
-
-      <div className="w-full max-w-md">
-        {/* Logo/Brand */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-4" style={{ background: 'linear-gradient(to right, #a5c8ca, #bdd6d2)' }}>
+    <div className="min-h-screen flex bg-white">
+      {/* Sección izquierda - Gradiente (oculta en móvil) */}
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-600 via-purple-600 to-violet-700 items-center justify-center relative overflow-hidden">
+        {/* Elementos decorativos */}
+        <div className="absolute top-20 right-20 w-96 h-96 rounded-full bg-white/10 blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-white/10 blur-3xl"></div>
+        
+        <div className="relative z-10 text-center text-white px-8">
+          <div className="mb-8">
+            <div className="text-6xl font-extrabold mb-4">✓</div>
+            <h1 className="text-5xl font-extrabold mb-4 leading-tight">
+              Organiza<br />tus tareas
+            </h1>
+            <p className="text-xl text-white/90 leading-relaxed">
+              Gestiona proyectos, mantén el enfoque y completa lo que realmente importa
+            </p>
           </div>
-          <h1 className="text-3xl font-bold mb-2">
-            TaskApp
-          </h1>
-          <p>
-            Gestiona tus tareas de forma eficiente
-          </p>
+          <div className="flex items-center justify-center gap-4 mt-12 text-sm">
+            <div className="w-2 h-2 rounded-full bg-white/60"></div>
+            <p className="text-white/70">Diseñado para tu productividad</p>
+            <div className="w-2 h-2 rounded-full bg-white/60"></div>
+          </div>
         </div>
+      </div>
 
-        {/* Card */}
-        <div className="card">
-          <div className="mb-6">
-            <h2 className="text-xl font-bold mb-1">
+      {/* Sección derecha - Formulario */}
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 sm:p-8">
+        <div className="w-full max-w-sm">
+          {/* Logo - Visible solo en móvil */}
+          <div className="lg:hidden text-center mb-8">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-600 mb-4">
+              <span className="text-white text-2xl font-bold">✓</span>
+            </div>
+            <h1 className="text-3xl font-extrabold text-gray-900">
+              TaskApp
+            </h1>
+          </div>
+
+          {/* Contenido del formulario */}
+          <div className="mb-8">
+            <h2 className="hidden lg:block text-3xl font-extrabold text-gray-900 mb-2">
               Bienvenido de vuelta
             </h2>
-            <p className="text-sm">
-              Inicia sesión para continuar
+            <h2 className="lg:hidden text-2xl font-extrabold text-gray-900 mb-2">
+              Inicia sesión
+            </h2>
+            <p className="text-gray-600 font-medium">
+              Accede a tu cuenta para continuar
             </p>
           </div>
 
+          {/* Error */}
           {error && (
-            <div className="text-sm px-4 py-3 rounded-lg mb-4 flex items-start gap-3 border-l-4" style={{ backgroundColor: 'rgba(231, 76, 60, 0.1)', borderColor: '#e74c3c', color: '#e74c3c' }}>
-              <span>{error}</span>
+            <div className="px-4 py-3 rounded-xl mb-6 flex items-start gap-3 bg-red-50 border border-red-200">
+              <svg className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4v2m0-12a9 9 0 110 18 9 9 0 010-18z" />
+              </svg>
+              <span className="text-sm font-semibold text-red-800">{error}</span>
             </div>
           )}
 
+          {/* Formulario */}
           <LoginForm onSubmit={handleLogin} isLoading={isLoading} />
 
-          <div className="mt-6 pt-6" style={{ borderTop: '1px solid #e3e5d7' }}>
-            <p className="text-sm text-center">
+          {/* Link a registro */}
+          <div className="mt-8 pt-8 border-t border-gray-200 text-center">
+            <p className="text-gray-600 font-medium">
               ¿No tienes cuenta?{' '}
               <Link 
                 to="/register" 
-                className="font-semibold hover:underline transition-colors"
-                style={{ color: '#a5c8ca' }}
+                className="text-indigo-600 font-bold hover:text-indigo-700 transition-colors"
               >
                 Crea una aquí
               </Link>
@@ -78,7 +105,7 @@ export const LoginPage = () => {
         </div>
 
         {/* Footer */}
-        <p className="text-xs text-center mt-6" style={{ color: '#bdd6d2' }}>
+        <p className="text-xs text-gray-500 text-center mt-8">
           © 2026 TaskApp. Todos los derechos reservados.
         </p>
       </div>

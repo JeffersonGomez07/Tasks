@@ -1,13 +1,19 @@
 /* Fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Paleta de colores personalizada */
+/* Paleta de colores personalizada - Moderno y Extravagante */
 :root {
-  --color1: #f6eddc;
-  --color2: #e3e5d7;
-  --color3: #bdd6d2;
-  --color4: #a5c8ca;
-  --color5: #586875;
+  --primary: #4F46E5;
+  --secondary: #7C3AED;
+  --accent: #EC4899;
+  --bg-base: #FAFAFA;
+  --bg-white: #FFFFFF;
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --border: #E5E7EB;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
 }
 
 @tailwind base;
@@ -25,29 +31,29 @@
   }
 
   body {
-    background-color: var(--color1);
-    color: var(--color5);
+    background-color: var(--bg-base);
+    color: var(--text-primary);
     @apply transition-colors duration-300;
   }
 
   h1 {
-    @apply text-4xl font-bold tracking-tight;
-    color: var(--color5);
+    @apply text-4xl font-extrabold tracking-tight;
+    color: var(--text-primary);
   }
 
   h2 {
     @apply text-3xl font-bold tracking-tight;
-    color: var(--color5);
+    color: var(--text-primary);
   }
 
   h3 {
-    @apply text-xl font-semibold;
-    color: var(--color5);
+    @apply text-xl font-bold;
+    color: var(--text-primary);
   }
 
   p {
     @apply leading-relaxed;
-    color: var(--color5);
+    color: var(--text-secondary);
   }
 }
 

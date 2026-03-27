@@ -27,7 +27,7 @@ export const RegisterForm = ({ onSubmit, isLoading }: Props) => {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       {/* Email */}
       <div className="space-y-2">
-        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+        <label className="block text-sm font-semibold text-gray-900">
           Correo Electrónico
         </label>
         <input
@@ -43,7 +43,7 @@ export const RegisterForm = ({ onSubmit, isLoading }: Props) => {
 
       {/* Contraseña */}
       <div className="space-y-2">
-        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+        <label className="block text-sm font-semibold text-gray-900">
           Contraseña
         </label>
         <input
@@ -59,7 +59,7 @@ export const RegisterForm = ({ onSubmit, isLoading }: Props) => {
 
       {/* Confirmar contraseña */}
       <div className="space-y-2">
-        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+        <label className="block text-sm font-semibold text-gray-900">
           Confirmar Contraseña
         </label>
         <input

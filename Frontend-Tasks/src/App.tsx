@@ -2,6 +2,7 @@ import './App.css'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
+import { NotFoundPage } from './pages/NotFoundPage'
 import { ProtectedRoute } from './router/ProtectedRoute'
 import { MainLayout } from './components/layout/MainLayout'
 import { DashboardPage } from './pages/DashboardPage'
@@ -14,7 +15,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
-      {/* Rutas protegidas — MainLayout como padre, páginas como hijas */}
+      {/* Rutas protegidas */}
       <Route element={
         <ProtectedRoute>
           <MainLayout />
@@ -24,8 +25,11 @@ function App() {
         <Route path="/stats" element={<StatsPage />} />
       </Route>
 
-      {/* Ruta por defecto */}
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      {/* Redirige la raíz al login */}
+      <Route path="/" element={<Navigate to="/login" replace />} />
+
+      {/* Catch-all — cualquier ruta desconocida */}
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }

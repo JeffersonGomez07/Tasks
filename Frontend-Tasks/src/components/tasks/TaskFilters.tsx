@@ -27,13 +27,13 @@ export const TaskFilters = ({
   }
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-col sm:flex-row gap-3">
+    <div className="space-y-5">
+      <div className="flex flex-col sm:flex-row gap-4">
 
         {/* Búsqueda por texto */}
         <div className="relative flex-1">
           <svg
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 w-4 h-4"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none"
             fill="none" viewBox="0 0 24 24" stroke="currentColor"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -45,7 +45,7 @@ export const TaskFilters = ({
             defaultValue={filters.search}
             key={hasActiveFilters ? 'active' : 'clear'}
             onChange={(e) => handleSearchChange(e.target.value)}
-            className="input-base pl-9"
+            className="input-base pl-12"
           />
         </div>
 

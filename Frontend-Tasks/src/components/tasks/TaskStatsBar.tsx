@@ -11,24 +11,63 @@ export const TaskStatsBar = ({ tasks }: Props) => {
   const completed = tasks.filter(t => t.status === 'COMPLETED').length
 
   const stats = [
-    { label: 'Total',       value: total,      color: 'from-slate-600 to-slate-700', lightBg: 'bg-slate-100 dark:bg-slate-900/30', darkText: 'text-slate-900 dark:text-slate-200' },
-    { label: 'Pendientes',  value: pending,    color: 'from-amber-500 to-amber-600', lightBg: 'bg-amber-100 dark:bg-amber-900/30', darkText: 'text-amber-900 dark:text-amber-200' },
-    { label: 'En progreso', value: inProgress, color: 'from-blue-500 to-blue-600', lightBg: 'bg-blue-100 dark:bg-blue-900/30', darkText: 'text-blue-900 dark:text-blue-200' },
-    { label: 'Completadas', value: completed,  color: 'from-emerald-500 to-emerald-600', lightBg: 'bg-emerald-100 dark:bg-emerald-900/30', darkText: 'text-emerald-900 dark:text-emerald-200' },
+    {
+      label: 'Total',
+      value: total,
+      gradient: 'from-indigo-600 to-purple-600',
+      bgLight: 'bg-indigo-50',
+      icon: '📊',
+    },
+    {
+      label: 'Pendientes',
+      value: pending,
+      gradient: 'from-amber-500 to-orange-600',
+      bgLight: 'bg-amber-50',
+      icon: '⏳',
+    },
+    {
+      label: 'En progreso',
+      value: inProgress,
+      gradient: 'from-blue-500 to-cyan-600',
+      bgLight: 'bg-blue-50',
+      icon: '⚙️',
+    },
+    {
+      label: 'Completadas',
+      value: completed,
+      gradient: 'from-green-500 to-emerald-600',
+      bgLight: 'bg-green-50',
+      icon: '✓',
+    },
   ]
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
       {stats.map(stat => (
-        <div key={stat.label} className={`card border-0 overflow-hidden`}>
-          <div className={`flex items-center justify-between`}>
+        <div key={stat.label} className={`${stat.bgLight} rounded-2xl p-6 border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden relative group`}>
+          {/* Fondo degradado decorativo */}
+          <div className={`absolute -bottom-8 -right-8 w-32 h-32 bg-gradient-to-br ${stat.gradient} opacity-5 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-300`}></div>
+          
+          <div className="relative z-10 flex items-center justify-between">
             <div className="flex-1">
-              <p className={`text-3xl font-bold ${stat.darkText}`}>{stat.value}</p>
-              <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium">{stat.label}</p>
+              <p className="text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wider">
+                {stat.label}
+              </p>
+              <p className={`text-4xl font-extrabold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
+                {stat.value}
+              </p>
             </div>
-          <div className={`text-3xl ml-3 flex-shrink-0`}></div>
+            <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${stat.gradient} shadow-lg flex items-center justify-center text-white text-xl font-bold flex-shrink-0`}>
+              {stat.value}
+            </div>
           </div>
-          <div className={`absolute -bottom-0 -right-0 w-24 h-24 bg-gradient-to-br ${stat.color} opacity-10 rounded-full blur-2xl`}></div>
+          
+          {/* Barra de progreso sutil */}
+          {stat.value > 0 && (
+            <div className="mt-4 h-1 bg-gray-200 rounded-full overflow-hidden">
+              <div className={`h-full bg-gradient-to-r ${stat.gradient}`} style={{ width: `${Math.min((stat.value / total) * 100, 100)}%` }}></div>
+            </div>
+          )}
         </div>
       ))}
     </div>

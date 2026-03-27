@@ -9,6 +9,7 @@ export interface Task {
   priority: TaskPriority
   dueDate: string
   createdAt: string
+  subtasks?: Subtask[]
 }
 
 export interface TaskRequest {
@@ -23,4 +24,10 @@ export interface TaskFilters {
   status?: TaskStatus
   priority?: TaskPriority
   search?: string
+}
+
+export interface Subtask {
+  id: number
+  title: string
+  completed: boolean
 }
